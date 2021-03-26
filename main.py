@@ -7,14 +7,14 @@ app.secret_key = 'Chemistry'
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        pass
+        new_item = request.form['new_item']
+        current_list = session['my_list']
+        current_list.append(new_item)
+        session['my_list'] = current_list
     else:
-        if 'my_list' not in session:
+        # if 'my_list' not in session:
             session['my_list'] = []
-        else:
-            session['my_list'].append(123)
-            session.modified = True
-        print(session, session['my_list'], session.get('my_list'))
+
     return render_template('index.html')
 
 if __name__ == '__main__':

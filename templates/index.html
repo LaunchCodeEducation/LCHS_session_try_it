@@ -19,8 +19,12 @@
     </section>
     <hr>
     <section class="centered">
-        <h2>Session List Items:</h2>
-        <p>(Nothing here yet...)</p>
+        <h2>Grocery List</h2>
+        <ul>
+            {% for item in session['my_list'] %}
+                <li>{{item}}</li>
+            {% endfor %}
+        </ul>
     </section>
 </body>
 </html>

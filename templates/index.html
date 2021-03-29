@@ -18,13 +18,17 @@
         </form>
     </section>
     <hr>
-    <section class="centered">
-        <h2>Grocery List</h2>
-        <ul>
-            {% for item in session['my_list'] %}
-                <li>{{item}}</li>
-            {% endfor %}
-        </ul>
-    </section>
+    {% if session['groceries'] %}
+        <section class="centered">
+            <form action="/" method="POST">
+                {% for item in session['groceries'] %}
+                    <label><input type="checkbox" name="del_items" value="{{item}}"/> {{item}}</label>
+                {% endfor %}
+                <section class="centered">
+                    <button value="remove" name="button">Remove Selected</button>
+                </section>
+            </form>
+        </section>
+    {% endif %}
 </body>
 </html>

@@ -7,17 +7,22 @@ app.secret_key = 'Chemistry'
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        new_item = request.form['new_item'].title()
-        current_list = session['my_list']
-        if new_item not in current_list:
-            current_list.append(new_item)
+        if request.form['button'] == 'add':
+            new_item = request.form['new_item'].title()
+            current_list = session['groceries']
+            if new_item not in current_list:
+                current_list.append(new_item)
         else:
-            current_list.remove(new_item)
-        session['my_list'] = current_list
-        session['my_list'].sort()
+            del_items = request.form.getlist('del_items')
+            current_list = session['groceries']
+            for item in del_items:
+                if item in current_list:
+                    current_list.remove(item)
+        session['groceries'] = current_list
+        session['groceries'].sort()
     else:
-        if 'my_list' not in session:
-            session['my_list'] = []
+        if 'groceries' not in session:
+            session['groceries'] = []
 
     return render_template('index.html')
 

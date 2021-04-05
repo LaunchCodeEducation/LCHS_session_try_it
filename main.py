@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, render_template, session
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.secret_key = 'Chemistry'
+app.secret_key = 'This_is_NOT_a_good_secret_key'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

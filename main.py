@@ -7,7 +7,7 @@ app.secret_key = 'K>~EEAnH_x,Z{q.43;NmyQiNz1^Yr7'
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        if request.form['button'] == 'add':
+        if request.form['submit_action'] == 'add':
             new_item = request.form['new_item'].title()
             current_list = session['groceries']
             if new_item not in current_list:

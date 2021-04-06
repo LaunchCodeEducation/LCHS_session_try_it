@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Practice 2</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Active Buttons</h1>
+    <section class="centered">
+        <form action="/" method="POST">
+            <section class="centered">
+                {% for value in range(10) %}
+                    <button value="{{value}}" name="new_number">{{value}}</button>
+                    {% if value%3 == 0 %}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </section>
+            <section class="centered">
+                <button value="delete" name="new_number">Delete</button>
+                <p class="output">{{session['output']}}</p>
+            </section>
+        </form>
+    </section>
+</body>
+</html>

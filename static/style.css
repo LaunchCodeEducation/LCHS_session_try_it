@@ -54,3 +54,10 @@ ul {
     text-align: left;
     font-size: x-large;
 }
+
+.feedback {
+    color: blue;
+    font-style: italic;
+    text-align: center;
+    font-size: large;
+}

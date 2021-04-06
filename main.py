@@ -12,19 +12,25 @@ def index():
             current_list = session['groceries']
             if new_item not in current_list:
                 current_list.append(new_item)
+                message = f"You just added '{new_item}' to the list."
+            else:
+                message = f"The list already contains '{new_item}'."
         else:
             del_items = request.form.getlist('del_items')
             current_list = session['groceries']
             for item in del_items:
                 if item in current_list:
                     current_list.remove(item)
+            message = ''
         session['groceries'] = current_list
         session['groceries'].sort()
     else:
         if 'groceries' not in session:
             session['groceries'] = []
+        
+        message = ''
 
-    return render_template('index.html')
+    return render_template('index.html', message = message)
 
 if __name__ == '__main__':
     app.run()
